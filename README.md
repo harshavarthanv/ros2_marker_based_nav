@@ -17,8 +17,7 @@ This project is part of the **ENPM809Y** course at the **University of Maryland,
   - [Step 2: Start the Subscriber Node](#step-2-start-the-subscriber-node)
   - [Step 3: Start Robot Navigation](#step-3-start-robot-navigation)
 - [Project Structure](#project-structure)
-- [Authors](#authors)
-- [License](#license)
+
 
 ---
 
@@ -52,49 +51,63 @@ git clone <your-repository-url> group16
 ```
 ### **Step2: Install Dependencies**
 ```bash
-cd ~/final_ws
+cd ~/rwa3_ws
 rosdep install --from-paths src --ignore-src -r -y
+
 ```
 
 ### **Step 3: Build the Package**
 ```bash
-cd ~/final_ws
-colcon build --packages-select group16_final
+cd ~/rwa3_ws
+colcon build --packages-select group16
 source install/setup.bash
+
 ```
 ## **Running the Project**
 ### **Step 1: Launch the ROS2 Simulation**
 ```bash
-ros2 launch final_project final_project.launch.py
+ros2 launch turtlebot3_gazebo maze.launch.py
 ```
-### **Step 2: Start the ArUco Marker Detection Node**
+### **Step 2: Start the Subscriber Node**
 ```bash
-ros2 run group16_final listen
+ros2 run group16 code
 ```
 
-### **Step 3: Run the Waypoint Navigation Node**
+### **Step 3: Start Robot Navigation**
 ```bash
-ros2 launch group16_final wayp.launch.py
+ros2 launch group16 listen.launch.py
 ```
 
 ## **Project Structure**
 ```
-group16_final/
-│── config/
-│   ├── waypoint_params.yaml  # Contains predefined waypoints
+group16/
+├── config/
+│   ├── params.yaml              # Contains ArUco marker parameters
 │
-│── include/group16_final/
-│   ├── GoalPublisher.hpp     # Header file for goal publishing
+├── include/group16/
+│   ├── header.hpp               # Header file for node definitions
 │
-│── launch/
-│   ├── wayp.launch.py        # ROS2 launch file for the navigation node
+├── launch/
+│   ├── listen.launch.py         # ROS2 launch file for the navigation node
 │
-│── src/
-│   ├── listen.cpp            # ArUco marker detection and parameter retrieval
+├── src/
+│   ├── code.cpp                 # Main code for the publisher node
+│   ├── listen.cpp               # Node that listens for marker detections
 │
-│── CMakeLists.txt            # ROS2 CMake build configuration
-│── package.xml               # Package dependencies and metadata
-│── README.md                 # Documentation
-```
+├── CMakeLists.txt               # ROS2 CMake build configuration
+├── package.xml                  # Package dependencies and metadata
+├── README.md                    # Documentation
 
+```
+## **Additional Notes**
+
+If you encounter any issues, check that all dependencies are installed correctly using:
+```
+rosdep install --from-paths src --ignore-src -r -y
+```
+Ensure your workspace is properly sourced:
+```
+source install/setup.bash
+```
+Contributions and pull requests are welcome!
 
