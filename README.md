@@ -3,6 +3,7 @@
 ## **Project Overview**
 This project is part of the **ENPM809Y** course at the **University of Maryland, College Park**. The goal of the project is to develop an **Autonomous Robot Navigation system** using **ROS2**. The robot navigates a maze using **ArUco markers**, detects objects using a **logical camera**, and transforms frames for pose estimation.
 
+![Robot Image](rwa3_image.JPG)
 
 
 ---
